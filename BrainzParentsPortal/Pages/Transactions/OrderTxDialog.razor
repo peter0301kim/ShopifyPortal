@@ -1,0 +1,53 @@
+﻿@page "/OrderTx/{orderTxID}"
+@attribute [Authorize(Roles = "Administrator, User")]
+
+@using System.ComponentModel.DataAnnotations
+@using BrainzParentsPortal.Helpers;
+@using BrainzParentsPortal.Integration.PortalDb;
+@using Paytec.Integration.Shopify
+@using Paytec.Integration.Shopify.Models;
+@using Paytec.Integration.Shopify.Services
+@inject ShopifySettings ShopifySettings
+@inject PortalDbConnectionSettings PortalDbConnectionSettings
+@inject CustomAuthenticationStateProvider CustomAuthenticationStateProvider
+@inject NavigationManager NavManager
+@inject IConfiguration Configuration
+
+<MudDialog>
+    <DialogContent>
+        <MudProgressLinear Color="Color.Primary" Indeterminate="IsProgress" Class="my-7" />
+        <MudGrid>
+
+            <MudItem Class="mx-12" xs="12">
+                <MudGrid Spacing=1 Justify="Justify.FlexStart" Class="mt-12">
+                    <MudItem xs="12"><MudText>Order detail</MudText></MudItem><MudDivider />
+                    <MudItem xs="6"><MudText>Order number</MudText></MudItem>       <MudItem xs="6"><MudText>@DtOrderTx.VendorOrderID</MudText></MudItem>
+                    <MudItem xs="6"><MudText>Date</MudText></MudItem>               <MudItem xs="6"><MudText>@DtOrderTx.OrderTxDate</MudText></MudItem>
+                    <MudItem xs="6"><MudText>Member name</MudText></MudItem>        <MudItem xs="6"><MudText>@DtOrderTx.MemberName</MudText></MudItem>
+                    <MudItem xs="6"><MudText>Order name</MudText></MudItem>         <MudItem xs="6"><MudText>@DtOrderTx.OrderName</MudText></MudItem>
+                    <MudItem xs="6"><MudText>Total</MudText></MudItem>              <MudItem xs="6"><MudText>@DtOrderTx.Total</MudText></MudItem>
+                </MudGrid>
+                
+                <MudGrid Spacing=1 Justify="Justify.FlexStart" Class="mt-12">
+                    <MudItem xs="12"><MudText>More detail</MudText></MudItem><MudDivider />
+                    <MudItem xs="6"><MudText>Vendor</MudText></MudItem>                 <MudItem xs="6"><MudText>@DtOrderTx.VendorName</MudText></MudItem>
+                    <MudItem xs="6"><MudText>Organization</MudText></MudItem>           <MudItem xs="6"><MudText>@DtOrderTx.OrganizationName</MudText></MudItem>
+                </MudGrid>
+                
+                <MudGrid Spacing=1 Justify="Justify.FlexStart" Class="mt-12">
+                    <MudItem xs="12"><MudText>BrainzPoint</MudText></MudItem><MudDivider />
+                    <MudItem xs="6"><MudText>Earned BrainzPoint</MudText></MudItem>     <MudItem xs="6"><MudText>@DtOrderTx.BrainzPoint</MudText></MudItem>
+                    <MudItem xs="6"><MudText>Calculation</MudText></MudItem>            <MudItem xs="6"><MudText>@DtOrderTx.BrainzPointCalc</MudText></MudItem>
+                </MudGrid>
+
+            </MudItem>
+
+        </MudGrid>
+    </DialogContent>
+    <DialogActions>
+        <MudButton Variant="MudBlazor.Variant.Outlined" Color="Color.Primary" OnClick="OnClose">Close</MudButton>
+    </DialogActions>
+</MudDialog>
+
+
+

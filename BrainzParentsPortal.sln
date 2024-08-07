@@ -1,0 +1,91 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrainzParentsPortal.Integration.PortalDb", "BrainzParentsPortal.Integration.PortalDb\BrainzParentsPortal.Integration.PortalDb.csproj", "{549F2DCC-FEAC-4A8D-978D-8585CA041CBD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrainzParentsPortal.Shared", "BrainzParentsPortal.Shared\BrainzParentsPortal.Shared.csproj", "{F90680B1-8AFE-454C-86EF-80E99B1FB1EC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrainzParentsPortal", "BrainzParentsPortal\BrainzParentsPortal.csproj", "{5C59F26E-3544-4637-AC95-876DB029EA39}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrainzParentsPortal.Integration.PortalDb.Console", "BrainzParentsPortal.Integration.PortalDb.Console\BrainzParentsPortal.Integration.PortalDb.Console.csproj", "{0838A10E-558E-4E6A-9894-F034A541CEFD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paytec.Integration", "Paytec.Integration\Paytec.Integration.csproj", "{703BB011-5E17-4B76-98ED-CAB2C89CC34C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paytec.Integration.Shopify", "Paytec.Integration.Shopify\Paytec.Integration.Shopify.csproj", "{6FB2138D-34F3-4B8C-8B51-0AB23F6D52FE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paytec.Integration.Shopify.Console", "Paytec.Integration.Shopify.Console\Paytec.Integration.Shopify.Console.csproj", "{52375452-91BA-488F-AC8D-5B27E19AD670}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrainzParentsPortal.DataManager.Console", "BrainzParentsPortal.DataManager.Console\BrainzParentsPortal.DataManager.Console.csproj", "{451AA01E-4967-4DAD-AC8A-D30A64FAD54B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrainzParentsPortal.ShopifyToPortalDb.Console", "BrainzParentsPortal.ShopifyToPortalDb.Console\BrainzParentsPortal.ShopifyToPortalDb.Console.csproj", "{B6463F28-4A1F-40BE-A825-AD4C09D2D0D6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrainzParentsPortal.WebAPI", "BrainzParentsPortal.WebAPI\BrainzParentsPortal.WebAPI.csproj", "{385304A2-F997-4E0F-8B5A-3B8D7A78FCB5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paytec.Test.SendMail.Console", "Paytec.Test.SendMail.Console\Paytec.Test.SendMail.Console.csproj", "{13082D12-CD67-4C68-8643-0203DDF9624E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paytec.Integration.PaytecNotificationWebAPI", "Paytec.Integration.PaytecNotificationWebAPI\Paytec.Integration.PaytecNotificationWebAPI.csproj", "{5A7D6518-FA03-4D03-A63B-0B332F093699}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{549F2DCC-FEAC-4A8D-978D-8585CA041CBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{549F2DCC-FEAC-4A8D-978D-8585CA041CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{549F2DCC-FEAC-4A8D-978D-8585CA041CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{549F2DCC-FEAC-4A8D-978D-8585CA041CBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F90680B1-8AFE-454C-86EF-80E99B1FB1EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F90680B1-8AFE-454C-86EF-80E99B1FB1EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F90680B1-8AFE-454C-86EF-80E99B1FB1EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F90680B1-8AFE-454C-86EF-80E99B1FB1EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C59F26E-3544-4637-AC95-876DB029EA39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C59F26E-3544-4637-AC95-876DB029EA39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C59F26E-3544-4637-AC95-876DB029EA39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C59F26E-3544-4637-AC95-876DB029EA39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0838A10E-558E-4E6A-9894-F034A541CEFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0838A10E-558E-4E6A-9894-F034A541CEFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0838A10E-558E-4E6A-9894-F034A541CEFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0838A10E-558E-4E6A-9894-F034A541CEFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{703BB011-5E17-4B76-98ED-CAB2C89CC34C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{703BB011-5E17-4B76-98ED-CAB2C89CC34C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{703BB011-5E17-4B76-98ED-CAB2C89CC34C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{703BB011-5E17-4B76-98ED-CAB2C89CC34C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FB2138D-34F3-4B8C-8B51-0AB23F6D52FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FB2138D-34F3-4B8C-8B51-0AB23F6D52FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FB2138D-34F3-4B8C-8B51-0AB23F6D52FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FB2138D-34F3-4B8C-8B51-0AB23F6D52FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52375452-91BA-488F-AC8D-5B27E19AD670}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52375452-91BA-488F-AC8D-5B27E19AD670}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52375452-91BA-488F-AC8D-5B27E19AD670}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52375452-91BA-488F-AC8D-5B27E19AD670}.Release|Any CPU.Build.0 = Release|Any CPU
+		{451AA01E-4967-4DAD-AC8A-D30A64FAD54B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{451AA01E-4967-4DAD-AC8A-D30A64FAD54B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{451AA01E-4967-4DAD-AC8A-D30A64FAD54B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{451AA01E-4967-4DAD-AC8A-D30A64FAD54B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6463F28-4A1F-40BE-A825-AD4C09D2D0D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6463F28-4A1F-40BE-A825-AD4C09D2D0D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6463F28-4A1F-40BE-A825-AD4C09D2D0D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6463F28-4A1F-40BE-A825-AD4C09D2D0D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{385304A2-F997-4E0F-8B5A-3B8D7A78FCB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{385304A2-F997-4E0F-8B5A-3B8D7A78FCB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{385304A2-F997-4E0F-8B5A-3B8D7A78FCB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{385304A2-F997-4E0F-8B5A-3B8D7A78FCB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13082D12-CD67-4C68-8643-0203DDF9624E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13082D12-CD67-4C68-8643-0203DDF9624E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13082D12-CD67-4C68-8643-0203DDF9624E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13082D12-CD67-4C68-8643-0203DDF9624E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A7D6518-FA03-4D03-A63B-0B332F093699}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A7D6518-FA03-4D03-A63B-0B332F093699}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A7D6518-FA03-4D03-A63B-0B332F093699}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A7D6518-FA03-4D03-A63B-0B332F093699}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9FAC73F8-6309-4AF8-8811-33198F45A8E4}
+	EndGlobalSection
+EndGlobal

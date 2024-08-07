@@ -1,0 +1,42 @@
+﻿@page "/ChartOrderTx"
+@attribute [Authorize(Roles = "Administrator")]
+@using System.ComponentModel.DataAnnotations;
+@using BrainzParentsPortal.Helpers;
+@using BrainzParentsPortal.Integration.PortalDb;
+@using BrainzParentsPortal.Shared.Models;
+@using Microsoft.AspNetCore.Authorization
+@inject NavigationManager NavManager
+@inject PortalDbConnectionSettings PortalDbConnectionSettings
+@inject IAuthorizationService AuthorizationService
+@inject CustomAuthenticationStateProvider CustomAuthenticationStateProvider
+@inject IDialogService DialogService
+
+<MudText Typo="Typo.h5">Analytics</MudText>
+<MudProgressLinear Color="Color.Primary" Indeterminate="IsProgress" Class="my-7" />
+
+<MudGrid>
+
+    <MudItem xs="6">
+        <MudPaper Class="d-flex justify-center align-content-center flex-wrap flex-grow-1 gap-4">
+            <MudText>Order Transaction Count</MudText>
+        </MudPaper>
+        <MudPaper>
+            <MudChart ChartType="ChartType.Line" ChartSeries="@Chart_Org_Year_Month_TxCount" @bind-SelectedIndex="ChartIndex"
+            XAxisLabels="@XAxisLabels" Width="100%" Height="350px" ChartOptions="@Options" />
+        </MudPaper>
+    </MudItem>
+
+    <MudItem xs="6">
+        <MudPaper Class="d-flex justify-center align-content-center flex-wrap flex-grow-1 gap-4">
+            <MudText>Earned BrainzPoints on Order Transactions</MudText>
+        </MudPaper>
+        <MudPaper>
+            <MudChart ChartType="ChartType.Line" ChartSeries="@Chart_Org_Year_Month_BrainzPoint" @bind-SelectedIndex="ChartIndex" 
+            XAxisLabels="@XAxisLabels" Width="100%" Height="350px" ChartOptions="@Options" />
+        </MudPaper>
+
+    </MudItem>
+
+
+
+</MudGrid>

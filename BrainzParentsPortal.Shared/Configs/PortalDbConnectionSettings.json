@@ -1,0 +1,9 @@
+{
+  "DbServer": ".\\SQLEXPRESS",
+  "DbCatalog": "BrainzParentsPortal",
+  "PersistSecurityInfo": false,
+  "MultipleActiveResultSets": true,
+  "IntegratedSecurity": true,
+  "DbUserID": "",
+  "DbEncryptedPassword": ""
+}

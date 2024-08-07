@@ -1,0 +1,206 @@
+﻿@using BrainzParentsPortal.Helpers
+@using BrainzParentsPortal.Models
+@using System.Timers 
+@inherits LayoutComponentBase
+@inject NavigationManager NavManager
+@inject IConfiguration Configuration
+@inject CustomAuthenticationStateProvider CustomAuthenticationStateProvider
+@inject IJSRuntime JSRuntime
+
+<CascadingValue Value="this">
+
+    <MudThemeProvider @ref="@_mudThemeProvider" @bind-IsDarkMode="@_isDarkMode" Theme="_currentTheme" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="0">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        <MudText  Typo="Typo.h5" Class="ml-3">Brainz</MudText>
+        <MudSpacer />
+
+@*         <MudIconButton Icon="@Icons.Material.Filled.Brightness4"
+                       Color="Color.Inherit"
+                       Class="nav-button"
+                       OnClick="@ThemeToggle" /> *@
+
+            <MudButton Class="mx-2" Color="Color.Inherit" OnClick="@(async(e) => await UpdateMember())">@UserName</MudButton>
+
+        <AuthorizeView>
+            <Authorized>
+
+                <MudButton Variant="Variant.Outlined" Color="Color.Inherit" OnClick="@((e) => Logout())">Log out</MudButton>
+            </Authorized>
+            <NotAuthorized>
+                <MudButton Variant="Variant.Outlined" Color="Color.Inherit" OnClick="@((e) => Login())">Log in</MudButton>
+            </NotAuthorized>
+        </AuthorizeView>
+
+
+    </MudAppBar>
+    <MudDrawer @bind-Open="_drawerOpen" Elevation="1">
+        <MudDrawerHeader>
+            <MudText Typo="Typo.h6">BrainzParentsPortal</MudText>
+        </MudDrawerHeader>
+        <NavMenu />
+    </MudDrawer>
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.Large" Class="my-16 pt-16">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
+
+</CascadingValue>
+
+@code {
+
+    [CascadingParameter]    private Task<AuthenticationState> AuthenticationState { get; set; }
+    private Timer timerObj;
+
+    public string UserName { get; set; } = string.Empty;
+    //Theme - Color
+    private bool _isDarkMode;
+
+    private MudThemeProvider _mudThemeProvider { get; set; }
+    private MudThemeColor MudThemeColor { get; set; } 
+
+    private MudTheme _currentTheme { get; set; }
+
+
+    // = new()
+    //     {
+    //         Palette = new PaletteLight
+    //         {
+    //             Primary = "#4FC3F7",//"#0A7BCF",
+    //             Secondary = "#7CB342",//LightGreen, Darken1
+    //             Info = "#64a7e2",
+    //             Success = "#2ECC40",
+    //             Warning = "#FFC107",
+    //             Error = "#FF0000",
+    //             AppbarBackground = "#64B5F6", //Blue,Lighten2
+    //             TextPrimary = "#000000", //Black
+    //             TextSecondary = "#616161", //Grey, Darken2
+
+    //             // more color properties
+    //          },
+    //         // PaletteDark = new PaletteDark
+            // {
+            //     Primary = "#6585e0",
+            //     Secondary = "#607D8B",
+            //     Info = "#a4c2dd",
+            //     Success = "#2ECC40",
+            //     Warning = "#dc2d7e",
+            //     Error = "#de2000",
+            //     AppbarBackground = "#121212",
+            //     TextPrimary = "#E0E0E0",
+            //     TextSecondary = "#BDBDBD",
+            //     // more color properties
+            // }
+       // };
+
+    protected override async Task OnInitializedAsync()
+    {
+        MudThemeColor = Configuration.GetSection("MudThemeColor").Get<MudThemeColor>()!;
+        _currentTheme = new()
+            {
+                PaletteLight
+                 = new PaletteLight
+                {
+                    Primary = MudThemeColor.Primary,
+                    Secondary = MudThemeColor.Secondary,
+                    Info = MudThemeColor.Info,
+                    Success = MudThemeColor.Success,
+                    Warning = MudThemeColor.Warning,
+                    Error = MudThemeColor.Error,
+                    AppbarBackground = MudThemeColor.AppbarBackground,
+                    TextPrimary = MudThemeColor.TextPrimary,
+                    TextSecondary = MudThemeColor.TextSecondary
+
+                    // more color properties
+                },
+            };
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            timerObj = new Timer(600000);
+            timerObj.Elapsed += UpdateTimer;
+            timerObj.AutoReset = false;
+            // Identify whether the user is active or inactive using onmousemove and onkeypress in JS function.
+            await JSRuntime.InvokeVoidAsync("timeOutCall", DotNetObjectReference.Create(this));
+
+            _isDarkMode = await _mudThemeProvider.GetSystemPreference();
+            //StateHasChanged();
+
+        }
+
+        var authState = await AuthenticationState;
+        if (authState.User.Identity != null && authState.User.Identity.IsAuthenticated)
+        {
+            UserName = authState.User.Identity.Name;
+        }
+    }
+
+    [JSInvokable]
+    public void TimerInterval()
+    {
+        // Resetting the Timer if the user in active state.
+        timerObj.Stop();
+        // Call the TimeInterval to logout when the user is inactive.
+        timerObj.Start();
+    }
+
+    private void UpdateTimer(Object source, ElapsedEventArgs e)
+    {
+        InvokeAsync(async () =>
+        {
+            // Log out when the user is inactive.
+            var authstate = await AuthenticationState;
+            if (authstate.User.Identity.IsAuthenticated)
+            {
+                Logout();
+                //UriHelper.NavigateTo("/Identity/Account/LogOut", true);
+            }
+        });
+    }
+
+
+
+    bool _drawerOpen = true;
+
+    void DrawerToggle() =>  _drawerOpen = !_drawerOpen;
+
+    void ThemeToggle() => _isDarkMode = !_isDarkMode;
+
+    private void Login()
+    {
+        NavManager.NavigateTo($"{NavManager.BaseUri}Login/LoginPage", true);
+    }
+
+    private async Task Logout()
+    {
+        await CustomAuthenticationStateProvider.UpdateAuthenticationState(null);
+        NavManager.NavigateTo($"{NavManager.BaseUri}", true);
+    }
+
+    private async Task UpdateMember()
+    {
+        var state = await CustomAuthenticationStateProvider.GetAuthenticationStateAsync();
+
+        string memberID = "";
+        foreach (var claim in state.User.Claims)
+        {
+
+            if (claim.Type.ToString().Contains("/claims/sid"))
+            {
+                memberID = claim.Value;
+            }
+        }
+
+        NavManager.NavigateTo($"{NavManager.BaseUri}UpdateMember/{memberID}", true);
+    }
+
+}

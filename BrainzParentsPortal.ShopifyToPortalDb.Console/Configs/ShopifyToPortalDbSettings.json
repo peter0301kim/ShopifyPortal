@@ -1,0 +1,6 @@
+{
+  "IsCopyShopifyCustomersToPortalDb": true,
+  "IsCopyShopifyOrdersToPortalDb": true,
+  "CustomersUpdatedDateEDT": "",
+  "OrdersUpdatedDateEDT": "",
+}

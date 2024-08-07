@@ -1,0 +1,12 @@
+﻿@page "/"
+@namespace BrainzParentsPortal.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+}
+
+ <component type="typeof(App)" render-mode="ServerPrerendered" /> 
+
+@*  Disable pre rendering 
+    <component type="typeof(App)" render-mode="Server" />*@
+

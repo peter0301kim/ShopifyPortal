@@ -1,0 +1,23 @@
+{
+  "TransferFunds":	{
+    "TrReceiptPath": "C:\\Paytec\\BrainzParentsPortal\\Receipts\\Transfer",
+    "TrReceiptTemplatePathFile": "C:\\Paytec\\BrainzParentsPortalReceipts\\TransferReceiptTemplate.html",
+    "TrFundCsvPath": "C:\\Paytec\\BrainzParentsPortal\\KiwiBankIntegration",
+    "TrMininumPoint": 1000,
+    "OneDollarToBrainzPoint": 100
+  },
+  "MultifactorAuthentication": {
+    "IsUseMFA": false,
+    "Email_2FA_TemplatePathFile": "C:\\Paytec\\BrainzParentsPortal\\Templates\\Email_2FA_Template.html",
+    "MFAExpireyMinutes": 30
+  },
+  "ResetPassword": {
+    "Email_From": "no-reply-supplort@brainz.com.au",
+    "Email_ResetPassword_TemplatePathFile": "C:\\Paytec\\BrainzParentsPortal\\Templates\\Email_ResetPassword_Template.html",
+    "ResetPassword_URL": "https://localhost:44393/ResetPassword",
+    "RequestExpireyMinutes": 30
+  },
+  "NewzealandPostcode": {
+    "PostcodePathFile": "C:\\Paytec\\BrainzParentsPortal\\Postcode\\NewzealandPostcode.json"
+  }
+}

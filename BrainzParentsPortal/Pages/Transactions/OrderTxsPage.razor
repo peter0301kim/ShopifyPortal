@@ -1,0 +1,54 @@
+﻿@page "/OrderTxs"
+@attribute [Authorize(Roles = "Administrator, User")]
+@using BrainzParentsPortal.Helpers
+@using BrainzParentsPortal.Shared.Models;
+@using BrainzParentsPortal.Integration.PortalDb;
+@using BrainzParentsPortal.Integration.PortalDb.Models;
+@using BrainzParentsPortal.Integration.PortalDb.Services;
+@inject PortalDbConnectionSettings PortalDbConnectionSettings
+@inject CustomAuthenticationStateProvider CustomAuthenticationStateProvider
+@inject NavigationManager NavManager
+
+<MudText Typo="Typo.h5">Order transactions list [@MemberName]</MudText>
+<MudProgressLinear Color="Color.Primary" Indeterminate="IsProgress" Class="my-7" />
+
+    <MudTable Items="@DtOrderTxs" Dense="@dense" Hover="@hover" Bordered="@bordered" Striped="@striped" Filter="new Func<DtOrderTx,bool>(FilterFunc1)" @bind-SelectedItem="selectedItem1">
+        <ToolBarContent>
+            <MudTextField @bind-Value="searchString1" Immediate="true" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+            <MudSpacer />
+            <MudDivider Vertical="true" FlexItem="true" />
+            <MudSpacer />
+
+        </ToolBarContent>
+        <HeaderContent>
+            <MudTh>Order</MudTh>
+            <MudTh>OrderTxDate</MudTh>
+            <MudTh>OrderName</MudTh>
+            <MudTh>Total</MudTh>
+            <MudTh>VendorName</MudTh>
+            <MudTh>OrganizationName</MudTh>
+            <MudTh>BrainzPointCalc</MudTh>
+            <MudTh>Action</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="VendorOrderID">@context.VendorOrderID</MudTd>
+            <MudTd DataLabel="Date">@context.OrderTxDate</MudTd>
+            <MudTd DataLabel="Order Name">@context.OrderName</MudTd>
+            <MudTd DataLabel="Total">@context.Total</MudTd>
+            <MudTd DataLabel="Vendor Name">@context.VendorName</MudTd>
+            <MudTd DataLabel="Org Name">@context.OrganizationName</MudTd>
+            <MudTd DataLabel="Calculation">@context.BrainzPointCalc</MudTd>
+            <MudTd DataLabel="Action">
+                <MudSpacer />
+                <MudIconButton Icon="@Icons.Material.Filled.ViewHeadline" Variant="Variant.Outlined" OnClick="@((e) => OnShowDetail(context))"></MudIconButton>
+            </MudTd>
+        </RowTemplate>
+        <PagerContent>
+            <MudTablePager />
+        </PagerContent>
+    </MudTable>
+
+
+
+
+

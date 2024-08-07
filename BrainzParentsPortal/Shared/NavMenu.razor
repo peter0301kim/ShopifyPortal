@@ -1,0 +1,45 @@
+﻿<MudNavMenu>
+
+    <AuthorizeView Roles="Administrator,User">
+        <Authorized>
+            <div class="nav-item px-3">
+                <MudNavLink Href="MyBrainz" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Dashboard">My Brainz</MudNavLink>
+                <MudNavLink Href="SpendPoints" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.AttachMoney">Spend Points</MudNavLink>
+                <MudNavGroup Icon="@Icons.Material.Filled.CurrencyExchange" Title="Transactions" Expanded="false">
+                    <MudNavLink Href="OrderTxs" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Order Transactions</MudNavLink>
+                    <MudNavLink Href="BrainzPointTrs" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">BrainzPoint Transfers</MudNavLink>
+                </MudNavGroup>
+
+            </div>
+        </Authorized>
+    </AuthorizeView>
+    <AuthorizeView Roles="Administrator">
+        <Authorized>
+            <div class="nav-item px-3">
+
+                <MudNavGroup Icon="@Icons.Material.Filled.People"  Title="Brainz Members" Expanded="false">
+                    <MudNavLink Href="ReadMembers" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Brainz member list</MudNavLink>
+                    <MudNavLink Href="AddMember" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Add">Add a member</MudNavLink>
+                </MudNavGroup>
+
+                <MudNavGroup Icon="@Icons.Material.Filled.LocalShipping" Title="Vendors" Expanded="false">
+                    <MudNavLink Href="ReadVendors" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Vendor list</MudNavLink>
+                    <MudNavLink Href="AddVendor" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Add">Add a vendor</MudNavLink>
+                </MudNavGroup>
+
+                <MudNavGroup Icon="@Icons.Material.Filled.School" Title="Organizations" Expanded="false">
+                    <MudNavLink Href="ReadOrganizations" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Organization list</MudNavLink>
+                    <MudNavLink Href="AddOrganization" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Add">Add an organization</MudNavLink>
+                </MudNavGroup>
+
+                <MudNavGroup Icon="@Icons.Material.Filled.Analytics" Title="Analytics" Expanded="false">
+                    <MudNavLink Href="SearchOrderTx" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Search Orders</MudNavLink>
+                    <MudNavLink Href="ChartOrderTx" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.ShowChart">Analytics</MudNavLink>
+                </MudNavGroup>
+            </div>
+        </Authorized>
+    </AuthorizeView>
+
+
+
+</MudNavMenu>

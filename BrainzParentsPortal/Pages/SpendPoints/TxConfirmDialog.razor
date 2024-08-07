@@ -1,0 +1,34 @@
+﻿
+
+<MudDialog>
+
+    <DialogContent>
+        <MudGrid Spacing="2">
+            @* 1std Row *@
+            <MudItem xs="6"><MudText>From :</MudText></MudItem>
+            <MudItem xs="6"><MudText>@TxConfirmData.MemberName</MudText></MudItem>
+            @* 2nd Row *@
+            <MudItem xs="6"><MudText>Payee Refreence : </MudText></MudItem>
+            <MudItem xs="6"><MudText>@TxConfirmData.PayeeReference </MudText></MudItem>
+            @* 3rd Row *@
+            <MudItem xs="6"><MudText>Payer Refreence : </MudText></MudItem>
+            <MudItem xs="6"><MudText>@TxConfirmData.PayerReference </MudText></MudItem>
+            @* 4th Row *@
+            <MudItem xs="6"><MudText>Available Brainz Points : </MudText></MudItem>
+            <MudItem xs="6"><MudText>@TxConfirmData.AvailableBrainzPoints </MudText></MudItem>
+            @* 5th Row *@
+            <MudItem xs="6"><MudText>Brainz Points to spend : </MudText></MudItem>
+            <MudItem xs="6"><MudText>@TxConfirmData.BrainzPointsToSpend </MudText></MudItem>
+
+        </MudGrid>
+
+    </DialogContent>
+
+    <DialogActions>
+        <MudButton OnClick="OnCancel">Cancel</MudButton>
+        <MudButton Variant="MudBlazor.Variant.Filled" Color="Color.Primary" OnClick="OnOk">Ok</MudButton>
+    </DialogActions>
+</MudDialog>
+
+
+

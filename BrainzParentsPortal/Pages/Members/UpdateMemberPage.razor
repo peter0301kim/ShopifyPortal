@@ -1,0 +1,135 @@
+﻿@page "/UpdateMember/{MemberID}"
+@attribute [Authorize(Roles = "Administrator, User")]
+@using System.ComponentModel.DataAnnotations
+@using BrainzParentsPortal.Helpers;
+@using BrainzParentsPortal.Integration.PortalDb;
+@using BrainzParentsPortal.Shared.SettingModels
+@using Paytec.Integration.Shopify
+@using Paytec.Integration.Shopify.Models;
+@using Paytec.Integration.Shopify.Services
+@inject IJSRuntime js
+@inject ShopifySettings ShopifySettings
+@inject PortalDbConnectionSettings PortalDbConnectionSettings
+@inject CustomAuthenticationStateProvider CustomAuthenticationStateProvider
+@inject BrainzParentsPortalSettings BrainzParentsPortalSettings
+@inject NavigationManager NavManager
+@inject IAuthorizationService AuthorizationService
+@inject IDialogService DialogService
+@inject IConfiguration Configuration
+
+<MudText Typo="Typo.h5">Update a member</MudText>
+<MudProgressLinear Color="Color.Primary" Indeterminate="IsProgress" Class="my-7" />
+
+<MudGrid Spacing="3">
+    <MudItem xs="12">
+
+        <MudGrid Spacing="3">
+            <MudItem xs="3">
+                <MudText>Image</MudText>
+            </MudItem>
+            <MudItem xs="9">
+                <MudCard>
+                    <MudCardContent>
+
+                        @if (@model.ImagePathFile != "")
+                        {
+                            <MudImage Src="@model.ImagePathFile" Height="200" Width="200" ObjectFit="ObjectFit.Contain" />
+                        }
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudSpacer />
+
+                        <MudFileUpload T="IBrowserFile" OnFilesChanged="LoadFiles" Accept=".png, .jpg, .jpeg" MaximumFileCount="1">
+                            <ButtonTemplate>
+                                <MudButton HtmlTag="label" Class="ml-auto"
+                                           Variant="MudBlazor.Variant.Filled" Color="Color.Primary"
+                                           StartIcon="@Icons.Material.Filled.CloudUpload"@*  for="@context *@">
+                                    Update member image
+                                </MudButton>
+                            </ButtonTemplate>
+                        </MudFileUpload>
+                    </MudCardActions>
+
+                </MudCard>
+            </MudItem>
+
+        </MudGrid>
+        <MudGrid Spacing="3">
+            <MudItem xs="3">
+                <MudText>Overview</MudText>
+            </MudItem>
+            <MudItem xs="9">
+                <MudCard>
+                    <MudCardContent>
+
+                        <MudTextField @bind-Value="model.Email" For="@(() => model.Email)" Label="Email" Class="mt-3" HelperText="Input email" ReadOnly="true" />
+                        <MudTextField @bind-Value="model.FirstName" For="@(() => model.FirstName)" Label="First name" HelperText="Input first name"  />
+                        <MudTextField @bind-Value="model.LastName" For="@(() => model.LastName)" Label="Last name" HelperText="Input last name"  />
+
+                        @* <MudTextField Disabled @bind-Value="model.Organization" For="@(() => model.Organization)" 
+                             Label="Organization" HelperText="Select the organization(School or IWI) your child go to. Please click the Add button" />
+                        <MudButton OnClick="@OnClickAddSchoolDialog" Color="Color.Primary">Add...</MudButton> *@
+
+                         <MudTextField @bind-Value="model.Phone" For="@(() => model.Phone)" 
+                             Label="Phone" HelperText="Input phone number without space and special character +64xxx" />
+
+                        <MudAutocomplete T="string" Label="Postcode" @bind-Value="SelectedPostCodeLocalRegion"  SearchFunc="@OnSearchPostcode" 
+                                         ResetValueOnEmptyText="false" CoerceText="false" CoerceValue="false"
+                                         AdornmentIcon="@Icons.Material.Filled.Search" AdornmentColor="Color.Primary">
+                        </MudAutocomplete>
+
+                         <MudTextField @bind-Value="model.Address" For="@(() => model.Address)" Label="Address" HelperText="Input address" />
+                         <MudTextField @bind-Value="model.Address2" For="@(() => model.Address2)" Label="Address2" HelperText="Input Address2" />
+                         <MudTextField @bind-Value="model.City" For="@(() => model.City)" Label="City" HelperText="Input City" />
+                         <MudTextField @bind-Value="model.Region" For="@(() => model.Region)" Label="Region" HelperText="Input Region" />
+                         <MudTextField @bind-Value="model.PostCode" For="@(() => model.PostCode)" Label="PostCode" HelperText="Input PostCode" />
+
+
+                     </MudCardContent>
+                     <MudCardActions>
+                         <MudSpacer />
+                         <MudButton Variant="MudBlazor.Variant.Filled" Color="Color.Primary" Class="ml-auto mr-2" OnClick="@(async(e) => await OnCancel())">Cancel</MudButton>
+                         <MudButton Variant="MudBlazor.Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="@(async(e) => await OnUpdateUser())">Update</MudButton>
+                         @*                 <MudButton ButtonType="ButtonType.Submit" Variant="MudBlazor.Variant.Filled" Color="Color.Primary" Class="ml-auto">Update</MudButton> *@
+                     </MudCardActions>
+                 </MudCard>
+            </MudItem>
+        </MudGrid>
+    </MudItem>
+     <MudItem xs="12">
+
+        <MudGrid Spacing="3">
+            <MudItem xs = "3">
+                <MudText>Child and Organization</MudText>
+            </MudItem>
+            <MudItem xs = "9">
+
+                 <MudPaper>
+                     <MudButton Variant="MudBlazor.Variant.Outlined" Color="Color.Primary" Class="ml-auto" OnClick="@(async(e) => await OnAddChildOrganization())">Add</MudButton>
+                     <MudTable Items="@ChildOrganizations" Hover="true" Breakpoint="Breakpoint.Sm" Loading="false" LoadingProgressColor="Color.Info">
+                         <HeaderContent>                             
+                             <MudTh>Organization name</MudTh>
+                             <MudTh>Payer Reference</MudTh>
+                             <MudTh>Child name</MudTh>
+                             <MudTh>Action</MudTh>
+                         </HeaderContent>
+                         <RowTemplate>
+                             
+                                <MudTd DataLabel="OrgName">@context.Organization.OrganizationName</MudTd>
+                                <MudTd DataLabel="Reference">@context.PayerReference</MudTd>
+                                <MudTd DataLabel="ChildName">@context.ChildName</MudTd>
+                                <MudTd DataLabel="Action">
+                                    <MudIconButton Icon="@Icons.Material.Filled.Edit" Variant="MudBlazor.Variant.Outlined" OnClick="@((e) => OnUpdateChildOrganization(@context))"></MudIconButton>
+                                    <MudIconButton Icon="@Icons.Material.Filled.Delete" Variant="MudBlazor.Variant.Outlined" OnClick="@((e) => OnDeleteChildOrganization(@context))"></MudIconButton>
+                                </MudTd>
+                            </RowTemplate>
+                        </MudTable>
+                    </MudPaper>
+
+
+            </MudItem>
+        </MudGrid>
+    </MudItem>
+</MudGrid>
+
+ 
