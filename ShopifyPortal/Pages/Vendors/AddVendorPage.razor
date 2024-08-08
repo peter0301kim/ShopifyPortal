@@ -1,0 +1,89 @@
+﻿@page "/AddVendor"
+@attribute [Authorize(Roles = "Administrator")]
+@using System.ComponentModel.DataAnnotations
+@using ShopifyPortal.Helpers;
+@using ShopifyPortal.Integration.PortalDb;
+@using Peter.Integration.Shopify
+@using Peter.Integration.Shopify.Models;
+@using Peter.Integration.Shopify.Services
+@inject ShopifySettings ShopifySettings
+@inject PortalDbConnectionSettings PortalDbConnectionSettings
+@inject CustomAuthenticationStateProvider CustomAuthenticationStateProvider
+@inject NavigationManager NavManager
+@inject IAuthorizationService AuthorizationService
+@inject IDialogService DialogService
+@inject IConfiguration Configuration
+
+<MudText Typo="Typo.h5">Add a vendor</MudText>
+<MudProgressLinear Color="Color.Primary" Indeterminate="IsProgress" Class="my-7" />
+
+<MudGrid>
+    <MudItem xs="12" sm="7">
+        <MudPaper>
+            <MudForm Model="@model" @ref="form" @bind-IsValid="@success" @bind-Errors="@Errors">
+                <MudCardContent>
+                    <MudTextField @bind-Value="model.VendorCode" For="@(() => model.VendorCode)"
+                                  Label="Vendor Code" HelperText="Input Vendor Code. Only Alphabet and number." />
+                    <MudTextField @bind-Value="model.VendorName" For="@(() => model.VendorName)"
+                                  Label="Vendor Name" HelperText="Input Vendor name" />
+                    <MudTextField @bind-Value="model.Phone" For="@(() => model.Phone)"
+                                  Label="Phone" HelperText="Input phone" />
+                    <MudTextField @bind-Value="model.Email" For="@(() => model.Email)"
+                                  Label="Email" HelperText="Input email" />
+                    <MudTextField @bind-Value="model.ContactPerson" For="@(() => model.ContactPerson)"
+                                  Label="ContactPerson" HelperText="Input contactPerson" />
+                    <MudTextField @bind-Value="model.Memo" For="@(() => model.Memo)"
+                                  Label="Memo" HelperText="Input memo" />
+                    <MudTextField @bind-Value="model.VendorCommission" For="@(() => model.VendorCommission)"
+                                  Label="Vendor Commission" HelperText="Input vendor commission" />
+                    <MudTextField @bind-Value="model.ParentCommission" For="@(() => model.ParentCommission)"
+                                  Label="Parent Commission" HelperText="Input parent commission" />
+
+                    <MudFileUpload T="IBrowserFile" OnFilesChanged="LoadFiles" Accept=".png, .jpg" MaximumFileCount="10">
+                        <ButtonTemplate>
+                            <MudButton HtmlTag="label"
+                                       Variant="MudBlazor.Variant.Filled" Color="Color.Primary"
+                                       StartIcon="@Icons.Material.Filled.CloudUpload"
+                                       @* for="@context" *@>
+                                Attach image files
+                            </MudButton>
+                        </ButtonTemplate>
+                    </MudFileUpload>
+                    @if (VendorImageFiles != null)
+                    {
+                        <MudList T="string">
+                            @foreach (var file in VendorImageFiles)
+                            {
+                                <MudListItem Icon="@Icons.Material.Filled.AttachFile">
+                                    @file.Name <code>@file.Size bytes</code>
+                                </MudListItem>
+                            }
+                        </MudList>
+                    }
+
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton Variant="MudBlazor.Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="@(async(e) => await OnAddVendor())">Add</MudButton>
+                </MudCardActions>
+
+            </MudForm>
+        </MudPaper>
+
+    </MudItem>
+    <MudItem xs="12" sm="5">
+        <MudPaper Class="pa-4 mud-height-full">
+            <MudText Typo="Typo.subtitle2">@($"Errors ({Errors.Length})")</MudText>
+                @foreach (var error in Errors)
+            {
+                <MudText Color="@Color.Error">@error</MudText>
+            }
+        </MudPaper>
+    </MudItem>
+</MudGrid>
+
+
+
+
+
+
+

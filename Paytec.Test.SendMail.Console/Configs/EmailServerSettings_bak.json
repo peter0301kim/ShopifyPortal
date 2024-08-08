@@ -1,7 +1,0 @@
-{
-  "EmailServerHost": "smtp-relay.sendinblue.com",
-  "EmailServerPort": 587,
-  "EmailServerAccount": "dev@paytec.com.au",
-  "EmailServerPassword": "XFqMOVQKxgktTy3a",
-  "EmailServerEncryption": ""
-}

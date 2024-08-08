@@ -1,0 +1,41 @@
+﻿@page "/SearchOrderTx"
+@attribute [Authorize(Roles = "Administrator")]
+@using System.ComponentModel.DataAnnotations;
+@using ShopifyPortal.Helpers;
+@using ShopifyPortal.Integration.PortalDb;
+@using ShopifyPortal.Shared.Models;
+@using MudBlazor
+@inject NavigationManager NavManager
+@inject PortalDbConnectionSettings PortalDbConnectionSettings
+@inject IAuthorizationService AuthorizationService
+@inject CustomAuthenticationStateProvider CustomAuthenticationStateProvider
+@inject IDialogService DialogService
+
+<MudText Typo="Typo.h5">Search Order transactions</MudText>
+<MudProgressLinear Color="Color.Primary" Indeterminate="IsProgress" Class="my-7" />
+
+
+<MudGrid>
+    <MudItem Class="mx-12" xs="12">
+        @* Order Transactions *@
+        <MudText>Order Earned History (The Latest 5)</MudText> <MudDivider />
+        <MudPaper Elevation="0">
+            <MudTable Items="@OrderTxs" Hover="true" Breakpoint="Breakpoint.Sm" Loading="false" LoadingProgressColor="Color.Info">
+                <HeaderContent>
+                    <MudTh>Date</MudTh>
+                    <MudTh>Brainz Point</MudTh>
+                    <MudTh>Comments</MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd DataLabel="Date">@context.OrderTxDate</MudTd>
+                    <MudTd DataLabel="Brainz Point">@context.BrainzPoint</MudTd>
+                    <MudTd DataLabel="Calculation">@context.BrainzPointCalc</MudTd>
+                </RowTemplate>
+            </MudTable>
+        </MudPaper>
+    </MudItem>
+
+
+
+
+</MudGrid>

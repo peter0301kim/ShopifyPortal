@@ -1,0 +1,117 @@
+﻿@page "/SpendPoints"
+@attribute [Authorize(Roles = "Administrator,User")]
+
+@using System.ComponentModel.DataAnnotations
+@using ShopifyPortal.Helpers
+@using ShopifyPortal.Integration.PortalDb;
+@using ShopifyPortal.Shared.Models;
+@using ShopifyPortal.Shared.SettingModels
+
+@inject NavigationManager NavManager
+@inject PortalDbConnectionSettings PortalDbConnectionSettings
+@inject BrainzParentsPortalSettings BrainzParentsPortalSettings
+@inject IAuthorizationService AuthorizationService
+@inject CustomAuthenticationStateProvider CustomAuthenticationStateProvider
+@inject IDialogService DialogService
+@inject IConfiguration Configuration
+
+<MudText Typo="Typo.h5">Spend Points</MudText>
+<MudProgressLinear Color="Color.Primary" Indeterminate="IsProgress" Class="my-7" />
+
+<MudGrid>
+    <MudItem Class="mx-12" xs="12">
+        <MudGrid Spacing=2 Justify="Justify.Center" Class="mt-12">
+            <MudItem>
+                <MudPaper Class="d-flex justify-center align-content-center flex-wrap flex-grow-1 gap-4" Height="50px" Width="500px">
+                    <MudText>Available Point : @AvailableBrainzPoint</MudText>
+                </MudPaper>
+            </MudItem>
+
+        </MudGrid>
+
+    </MudItem>
+
+    <MudItem Class="mx-12" xs="12">
+
+
+        <MudGrid Spacing=2 Justify="Justify.Center" Class="mt-12">
+
+            <MudItem>
+                <MudPaper Class="d-flex justify-center align-content-center flex-wrap flex-grow-1 gap-4" Elevation="0" >
+                    <MudText> Input points to spend </MudText>
+                </MudPaper>
+                <MudPaper Class="d-flex justify-center align-content-center flex-wrap flex-grow-1 gap-4" Elevation="0" >
+                        <MudTextField T="int" Immediate="true" @bind-Value="BrainzPointsToSpend" Label="Point" style=" width:150px;" Variant="Variant.Outlined"></MudTextField>
+                        <MudTextField @bind-Value="PointToCurrency" Label="Amount" 
+                        Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.AttachMoney" 
+                        style="width:100px;" ReadOnly="true"></MudTextField>
+
+                </MudPaper>
+            </MudItem>
+
+            <MudItem>
+                <MudPaper Class="d-flex justify-center align-content-center flex-wrap flex-grow-1 gap-4" Elevation="0">
+                    <MudIcon Icon="@Icons.Material.Filled.ArrowForward"  />
+                </MudPaper>
+            </MudItem>
+
+            <MudItem>
+                <MudPaper Class="d-flex justify-center align-content-center flex-wrap flex-grow-1 gap-4" Elevation="0">
+                    <MudText>Select an Organization</MudText>
+                </MudPaper>
+
+                <MudPaper Class="d-flex justify-center align-content-center flex-wrap flex-grow-1 gap-4" Width="250px" Elevation="0">
+                    <MudPopoverProvider />
+                    <MudSelect T="string" Variant="Variant.Filled" AnchorOrigin="Origin.BottomCenter"
+                                   ValueChanged="value => OnChildOrgSelectValueChanged( value)" >
+                        @if (ChildOrganizations != null)
+                        {
+
+                            @foreach (var cOrg in ChildOrganizations)
+                            {
+                                <MudSelectItem Value="@cOrg.ChildOrganizationID">@cOrg.Organization.OrganizationName </MudSelectItem>
+                            }
+                        }
+                        
+                    </MudSelect>
+                    
+                </MudPaper>
+            </MudItem>
+        </MudGrid>
+
+    </MudItem>
+    <MudItem Class="mx-12" xs="12">
+        <MudGrid Spacing=2 Justify="Justify.Center" Class="mt-12">
+            <MudItem>
+                <MudPaper Class="d-flex justify-center align-content-center flex-wrap flex-grow-1 gap-4" Elevation="0">
+                    
+                    <MudTextField @bind-Value="PayerReference" Variant="Variant.Outlined" Label="Payer Reference"></MudTextField>
+                    <MudIconButton Icon="@Icons.Material.Filled.Help" Size="Size.Large" OnClick="@(async(e) => await OnPayerReferenceHelp())"></MudIconButton>
+
+                    <MudPopover OverflowBehavior="OverflowBehavior.FlipNever" Open="@IsPopUpPayerRefHelp" AnchorOrigin="Origin.TopRight" TransformOrigin="Origin.TopLeft" Class="pa-4"
+                    >
+                        <MudText Typo="Typo.body2" Class="px-4 py-1">@PayerReferenceHelpText</MudText>
+                        <div style="top:0; left:0;">
+                            <MudIcon Icon="Icons.Material.Filled.SouthEast" Color="Color.Secondary" Class="" />
+                        </div>
+                    </MudPopover>
+
+
+                </MudPaper>
+
+            </MudItem>
+        </MudGrid>
+    </MudItem>
+    <MudItem Class="mx-12" xs="12">
+        <MudGrid Spacing=2 Justify="Justify.Center" Class="mt-12">
+            <MudItem >
+                <MudPaper Class="d-flex justify-center align-content-center " Elevation="0">
+                    <MudButton Variant="MudBlazor.Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="@(async(e) => await OnSpendBrainzPoint())">Spend</MudButton>
+
+                </MudPaper>
+            </MudItem>
+
+        </MudGrid>
+    </MudItem>
+    
+</MudGrid>

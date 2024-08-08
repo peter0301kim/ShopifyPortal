@@ -1,0 +1,51 @@
+﻿@page "/Login/Login2FADialog"
+@attribute [Authorize(Roles = "Administrator, User")]
+
+@using System.ComponentModel.DataAnnotations;
+@using ShopifyPortal.Helpers;
+@using ShopifyPortal.Integration.PortalDb;
+@using ShopifyPortal.Shared.SettingModels;
+@using Peter.Integration.Shopify;
+@using Peter.Integration.Shopify.Models;
+@using Peter.Integration.Shopify.Services;
+@inject NavigationManager NavManager
+@inject IDialogService DialogService
+@inject IConfiguration Configuration
+@inject CustomAuthenticationStateProvider CustomAuthenticationStateProvider
+@inject ShopifySettings ShopifySettings
+@inject PortalDbConnectionSettings PortalDbConnectionSettings
+@inject EmailServerSettings EmailServerSettings
+@inject BrainzParentsPortalSettings BrainzParentsPortalSettings
+
+
+<MudDialog >
+    <DialogContent >
+
+        <MudGrid>
+            <MudItem xs="12">
+                <MudText>Please input the Secret Key in your Email.</MudText>
+                @* <MudText>@TimerSeconds seconds remains</MudText> *@
+
+                <MudTextField @bind-Value="SecretKey" Label="Secret Key" Variant="MudBlazor.Variant.Outlined"></MudTextField>
+                @* <MudButton Variant="MudBlazor.Variant.Outlined" Color="Color.Primary" Disabled="(!IsEnableSendSecretKey)" OnClick="OnSendSecretKey">Send another SecretKey</MudButton> *@
+
+            </MudItem>
+            <MudItem xs="12">
+                <MudText>Havn't got the key ? Resend a key.</MudText>
+                <MudButton Variant="MudBlazor.Variant.Text" Color="Color.Primary" OnClick="OnResendSecretKey">Resend a key</MudButton>
+
+            </MudItem>
+        </MudGrid>
+
+    </DialogContent>
+
+    <DialogActions>
+        <MudButton Variant="MudBlazor.Variant.Outlined" Color="Color.Primary" OnClick="OnCancel">Cancel</MudButton>
+        <MudButton Variant="MudBlazor.Variant.Outlined" Color="Color.Primary" OnClick="OnVerifyKey">Verify Key</MudButton>
+    </DialogActions>
+
+
+
+</MudDialog>
+
+

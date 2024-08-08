@@ -1,0 +1,28 @@
+﻿@using ShopifyPortal.Helpers
+@using ShopifyPortal.Integration.PortalDb;
+@using ShopifyPortal.Integration.PortalDb.Models;
+@using ShopifyPortal.Integration.PortalDb.Services;
+@inject PortalDbConnectionSettings PortalDbConnectionSettings;
+
+<MudDialog>
+    <DialogContent>
+        <div class="d-flex flex-column py-1">
+            <MudText hidden="hidden">Selected items (@selectedItems?.Count): @(selectedItems == null ? "" : string.Join(",", selectedItems.OrderBy(x => x.OrganizationName).Select(x => x.OrganizationName)))</MudText>
+
+            <MudTable @ref="_table" T="Organization" Items="@Organizations" MultiSelection="true" @bind-SelectedItems="selectedItems" Hover="true"
+                      OnRowClick="@OnRowClick" @bind-SelectOnRowClick="@_selectOnRowClick">
+                <RowTemplate>
+                    <MudTd DataLabel="Type">@context.OrganizationType</MudTd>
+                    <MudTd DataLabel="Code">@context.OrganizationCode</MudTd>
+                    <MudTd DataLabel="Name">@context.OrganizationName</MudTd>
+                </RowTemplate>
+            </MudTable>
+        </div>
+    </DialogContent>
+    <DialogActions>
+            <MudButton OnClick="OnCancel">Cancel</MudButton>
+            <MudButton OnClick="OnOk">Ok</MudButton>
+    </DialogActions>
+</MudDialog>
+
+    

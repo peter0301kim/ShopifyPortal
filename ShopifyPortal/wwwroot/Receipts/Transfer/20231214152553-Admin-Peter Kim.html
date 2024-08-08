@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<title>Page Layout</title> 
+    <style> 
+		div.container{
+			width:250px;
+			margin:0 auto;
+			border:1px;
+		}
+	
+		header{
+			text-align:center;
+		}
+	
+		section{
+			margin:0,10,0,0;
+			text-align:left;
+		}
+
+		footer{
+			margin:0,20,0,0;
+
+			float:left;
+		}	
+
+		.head1 { 
+			font-size:20px; 
+			font-weight:bold; 
+			text-align:center; 
+			width:250px;
+		
+		} 
+		.transferInfo{
+			font-size:24px;
+			text-align:left; 
+			width:250px;
+		}
+
+		.companyInfo{
+			font-size:12px;
+			text-align:center; 
+			width:250px;
+		}
+    </style> 
+</head>
+
+<body>
+	<div class="container">
+		<header>
+		    <h1>
+			Transfer <br>
+			Acknowledgement
+			</h1> 
+		</header>
+		<section>
+			<p class="head1">
+				<!-- 
+				<label>From :</label>
+				<label id="lblMemberID">DEF_MEMBER_ID</label>
+				-->
+			</p>
+			<p class="transferInfo">
+				<label>From :</label>
+				<label id="lblMemberName">Admin-Peter Kim</label>
+			</p>
+			<p class="transferInfo">
+				<label>Date :</label>
+				<label id="lblDate">14-12-2023 15:25:53</label>
+			</p>
+			<p class="transferInfo">
+				<label>Amount :</label>
+				<label id="lblPoint">10</label>
+			</p>
+			<p class="transferInfo">
+				<label>PayeeReference :</label>
+				<label id="lblPayeeReference">Brainz points transfer</label>
+			</p>
+			<p class="transferInfo">
+				<label>PayerReference : </label>
+				<label id="lblPayerReference">10</label>
+			</p>
+			<p class="transferInfo">
+				<label>BankTxID : </label>
+				<label id="lblBankTxID"></label>
+			</p>			
+
+		</section> 
+
+        <footer> 
+			<p class="head1">PAYTEC TECHNOLOGY</p>
+			<p class="companyInfo">www.Peter.com.au<br>
+			ABN : 38429742<br>
+			08 8464 0333<br>
+			3/58 Beulah Road, Norwood SA 5067</p>			
+        </footer> 		
+    </div> 
+</body>
+
+</html>

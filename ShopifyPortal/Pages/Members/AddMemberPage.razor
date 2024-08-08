@@ -1,0 +1,124 @@
+﻿@page "/AddMember"
+@using System.ComponentModel.DataAnnotations
+@using ShopifyPortal.Helpers;
+@using ShopifyPortal.Integration.PortalDb;
+@using Peter.Integration.Shopify
+@using Peter.Integration.Shopify.Models;
+@using Peter.Integration.Shopify.Services
+@using ShopifyPortal.Shared.SettingModels
+@inject IJSRuntime js
+@inject IAuthorizationService AuthorizationService
+@inject IDialogService DialogService
+@inject IConfiguration Configuration
+@inject CustomAuthenticationStateProvider CustomAuthenticationStateProvider
+@inject ShopifySettings ShopifySettings
+@inject PortalDbConnectionSettings PortalDbConnectionSettings
+@inject NavigationManager NavManager
+
+<MudText Typo="Typo.h5">Register a member</MudText>
+<MudProgressLinear Color="Color.Primary" Indeterminate="IsProgress" Class="my-7" />
+
+<MudGrid Spacing="3">
+    <MudItem xs="12">
+
+        <MudPaper >
+            <MudForm Model="@AddMemberFormModel" @ref="form" @bind-IsValid="@IsFormSuccess" @bind-Errors="@Errors">
+                <MudCardContent>
+
+                    <MudGrid Spacing="3">
+                        <MudItem xs="3">
+                            <MudText>Overview</MudText>
+                        </MudItem>
+                        <MudItem xs="9">
+
+
+                            <MudTextField @bind-Value="AddMemberFormModel.Email" For="@(() => AddMemberFormModel.Email)" Label="Email" Class="mt-3" HelperText="Input email" />
+                            <MudTextField @bind-Value="AddMemberFormModel.FirstName" For="@(() => AddMemberFormModel.FirstName)" Label="First name" HelperText="Input first name" />
+                            <MudTextField @bind-Value="AddMemberFormModel.LastName" For="@(() => AddMemberFormModel.LastName)" Label="Last name" HelperText="Input last name" />
+
+                            <MudTextField @bind-Value="AddMemberFormModel.Password" For="@(() => AddMemberFormModel.Password)" InputType="@PasswordInput"
+                                          Label="Password" HelperText="Choose a strong password" Class="mt-3"
+                                          Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="OnShowPassword" AdornmentAriaLabel="Show Password" />
+                            <MudTextField @bind-Value="AddMemberFormModel.Password2" For="@(() => AddMemberFormModel.Password2)" InputType="@PasswordInput2"
+                                            Label="Password" HelperText="Repeat the password" Class="mt-3"
+                                          Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon2" OnAdornmentClick="OnShowPassword2" AdornmentAriaLabel="Show Password" />
+
+                            @* <MudTextField @bind-Value="model.Phone" For="@(() => model.Phone)"
+                                            Label="Phone" HelperText="Input phone number without space and special character +64xxx" /> *@
+
+                            @* <MudTextField @bind-Value="model.Address" For="@(() => model.Address)" Label="Address" HelperText="Input address" />
+                            <MudTextField @bind-Value="model.Address2" For="@(() => model.Address2)" Label="Address2" HelperText="Input Address2" />
+                            <MudTextField @bind-Value="model.City" For="@(() => model.City)" Label="City" HelperText="Input City" />
+                            <MudTextField @bind-Value="model.Region" For="@(() => model.Region)" Label="Region" HelperText="Input Region" />
+                            <MudTextField @bind-Value="model.PostCode" For="@(() => model.PostCode)" Label="PostCode" HelperText="Input PostCode" /> *@
+
+                        </MudItem>
+
+                        @* <MudItem xs="3">
+                            <MudText>Profile Image</MudText>
+                        </MudItem>
+                        <MudItem xs="9">
+                            <MudFileUpload T="IBrowserFile" OnFilesChanged="LoadFiles" Accept=".png, .jpg, .jpeg" MaximumFileCount="1">
+                                <ButtonTemplate>
+                                    <MudButton HtmlTag="label"
+                                                Variant="MudBlazor.Variant.Filled" Color="Color.Primary"
+                                                StartIcon="@Icons.Material.Filled.CloudUpload"
+                                                for="@context">
+                                        Attach image files
+                                    </MudButton>
+                                </ButtonTemplate>
+                            </MudFileUpload>
+                            @if (MemberImageFiles != null)
+                            {
+                                <MudList>
+                                    @foreach (var file in MemberImageFiles)
+                                    {
+                                        <MudListItem Icon="@Icons.Material.Filled.AttachFile">
+                                            @file.Name <code>@file.Size bytes</code>
+                                        </MudListItem>
+                                    }
+                                </MudList>
+                            }
+                        </MudItem> *@
+                        @* 
+                        <MudItem xs="3">
+                            <MudText>Child and Organization</MudText>
+                        </MudItem>
+                        <MudItem xs="9">
+                            <MudPaper>
+                                <MudButton Variant="MudBlazor.Variant.Outlined" Color="Color.Primary" Class="ml-auto" OnClick="@(async(e) => await OnAddChildOrganization())">Add</MudButton>
+                                <MudTable Items="@ChildOrganizations" Hover="true" Breakpoint="Breakpoint.Sm" Loading="false" LoadingProgressColor="Color.Info">
+                                    <HeaderContent>
+                                        <MudTh>Organization name</MudTh>
+                                        <MudTh>Payer Reference</MudTh>
+                                        <MudTh>Child name</MudTh>
+                                        <MudTh>Action</MudTh>
+                                    </HeaderContent>
+                                    <RowTemplate>
+                                        <MudTd DataLabel="OrgName">@context.Organization.OrganizationName</MudTd>
+                                        <MudTd DataLabel="Reference">@context.PayerReference</MudTd>
+                                        <MudTd DataLabel="ChildName">@context.ChildName</MudTd>
+                                        
+                                        <MudTd DataLabel="Action">
+                                            <MudIconButton Icon="@Icons.Material.Filled.Delete" Variant="MudBlazor.Variant.Outlined" OnClick="@(async(e) => await OnDeleteChildOrganization(@context))"></MudIconButton>
+                                        </MudTd>
+                                    </RowTemplate>
+                                </MudTable>
+                            </MudPaper>
+                        </MudItem> *@
+                    </MudGrid>
+
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton Variant="MudBlazor.Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="@(async(e) => await OnAddMember())">Add a member</MudButton>
+                </MudCardActions>
+            </MudForm>
+        </MudPaper>
+
+        
+    </MudItem>
+
+
+</MudGrid>
+
+

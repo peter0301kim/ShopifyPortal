@@ -1,0 +1,92 @@
+﻿@page "/AddOrganization"
+@attribute [Authorize(Roles = "Administrator")]
+@using System.ComponentModel.DataAnnotations
+@using ShopifyPortal.Helpers;
+@using ShopifyPortal.Integration.PortalDb;
+@using Peter.Integration.Shopify
+@using Peter.Integration.Shopify.Models;
+@using Peter.Integration.Shopify.Services
+@inject ShopifySettings ShopifySettings
+@inject PortalDbConnectionSettings PortalDbConnectionSettings
+@inject CustomAuthenticationStateProvider CustomAuthenticationStateProvider
+@inject NavigationManager NavManager
+@inject IDialogService DialogService
+@inject IConfiguration Configuration
+
+<MudText Typo="Typo.h5">Add a organization</MudText>
+<MudProgressLinear Color="Color.Primary" Indeterminate="IsProgress" Class="my-7" />
+
+<MudGrid>
+    <MudItem xs="12" sm="7">
+        <MudPaper>
+            <MudForm Model="@model" @ref="form" @bind-IsValid="@success" @bind-Errors="@Errors">
+                <MudCardContent>
+
+                    <MudPopoverProvider />
+                    <MudSelect T="string" AnchorOrigin="Origin.BottomCenter" @bind-Value="model.OrganizationType" Label="Organization Type" HelperText="Input Organization type (School or IWI)">
+                        <MudSelectItem Value="@("School")" />
+                        <MudSelectItem Value="@("IWI")" />
+                    </MudSelect>
+                    
+                    <MudTextField @bind-Value="model.OrganizationCode" For="@(() => model.OrganizationCode)" Label="Organization Code" HelperText="Input Organization code. Only Aphabet and numbers" />
+                    <MudTextField @bind-Value="model.OrganizationName" For="@(() => model.OrganizationName)" Label="Organization Name" HelperText="Input Organization name" />
+                    <MudTextField @bind-Value="model.Phone" For="@(() => model.Phone)" Label="Phone" HelperText="Input phone" />
+                    <MudTextField @bind-Value="model.Email" For="@(() => model.Email)" Label="Email" HelperText="Input email" />
+                    <MudTextField @bind-Value="model.ContactPerson" For="@(() => model.ContactPerson)" Label="Contact person" HelperText="Input contact person" />
+                    <MudTextField @bind-Value="model.ParentCommission" For="@(() => model.ParentCommission)" Label="Parent Commission" HelperText="Input parent commission" />
+                    <MudTextField @bind-Value="model.BSB" For="@(() => model.BSB)" Label="BSB" HelperText="Input BSB" />
+                    <MudTextField @bind-Value="model.AccountNumber" For="@(() => model.AccountNumber)" Label="Account number" HelperText="Input Account Number" />
+                    <MudTextField @bind-Value="model.Bank" For="@(() => model.Bank)" Label="Bank" HelperText="Input bank" />
+                    <MudTextField @bind-Value="model.PayerRefHelpText" For="@(() => model.Memo)" Label="Payer Ref. Help Text" HelperText="Input PayerRefHelpText" />
+                    <MudTextField @bind-Value="model.Memo" For="@(() => model.Memo)" Label="Memo" HelperText="Input memo" />
+
+                    @*<MudFileUpload T="IReadOnlyList<IBrowserFile>" OnFilesChanged="LoadFiles" Accept=".png, .jpg" MaximumFileCount="10">*@
+                    @*Needs only one image file*@
+                    <MudFileUpload T="IBrowserFile" OnFilesChanged="LoadFiles" Accept=".png, .jpg" MaximumFileCount="10">
+                        <ButtonTemplate>
+                            <MudButton HtmlTag="label"
+                                       Variant="MudBlazor.Variant.Filled" Color="Color.Primary"
+                                       StartIcon="@Icons.Material.Filled.CloudUpload"
+                                       @* for="@context" *@>
+                                Attach image files
+                            </MudButton>
+                        </ButtonTemplate>
+                    </MudFileUpload>
+                    @if (OrganizationImageFiles != null)
+                    {
+                        <MudList T="string">
+                            @foreach (var file in OrganizationImageFiles)
+                            {
+                                <MudListItem Icon="@Icons.Material.Filled.AttachFile">
+                                    @file.Name <code>@file.Size bytes</code>
+                                </MudListItem>
+                            }
+                        </MudList>
+                    }
+
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton Variant="MudBlazor.Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="@(async(e) => await OnAddOrganization())">Add</MudButton>
+
+                </MudCardActions>
+            </MudForm>
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="12" sm="5">
+        <MudPaper Class="pa-4 mud-height-full">
+            <MudText Typo="Typo.subtitle2">@($"Errors ({Errors.Length})")</MudText>
+                @foreach (var error in Errors)
+            {
+                <MudText Color="@Color.Error">@error</MudText>
+            }
+        </MudPaper>
+    </MudItem>
+</MudGrid>
+
+
+
+
+
+
+
+

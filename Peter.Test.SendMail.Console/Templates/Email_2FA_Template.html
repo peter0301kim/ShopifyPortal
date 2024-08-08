@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<title>Page Layout</title> 
+    <style> 
+		div.container{
+			width:300px;
+			margin:0 auto;
+			border:2px;
+		}
+	
+		header{
+			text-align:center;
+		}
+	
+		section{
+			margin:0,10,0,0;
+			text-align:left;
+		}
+
+		footer{
+			margin:0,20,0,0;
+
+			float:left;
+		}	
+
+		.headerText { 
+			font-size:20px; 
+			font-weight:bold; 
+			text-align:center; 
+			width:300px;
+		
+		} 
+		.emailContents{
+			font-size:16px;
+			text-align:left; 
+			width:300px;
+		}
+
+        .securityKeyInfo {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: left;
+            width: 300px;
+        }
+
+		.companyInfo{
+			font-size:12px;
+			text-align:center; 
+			width:250px;
+		}
+    </style> 
+</head>
+
+<body>
+	<div class="container">
+		<header>
+		    <p  class="headerText">
+			Brainz Parents Portal</br>
+			Verify your security key
+			</p>
+		</header>
+		<section>
+			<p class="emailContents">
+				Hi {Email},
+			</p>
+			<p class="emailContents">
+				We noticed a login attempt to your Brainz Parents Portal and 
+				wanted to check it was you.
+			</p>
+			<p class="emailContents">
+				Please use this Security Key to login :
+			</p>
+			
+			<p class="securityKeyInfo">
+				{SecurityKey}
+			</p>
+			<P class="emailContents">
+			   This code will expire in {MFAExpireyMinutes} minutes.
+			</p>
+		</section> 
+
+        <footer> 
+			<p class="companyInfo">Brainz Parents Portal</br>
+			www.ShopifyPortal.com.au
+			</p>			
+        </footer> 		
+    </div> 
+</body>
+
+</html>
