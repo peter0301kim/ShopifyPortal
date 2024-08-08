@@ -224,21 +224,21 @@ internal class Program
         {
             new Member
             {
-                MemberID = "DEFAULT_ADMIN_01",Email = "peter@Peter.com.au",FirstName = "Admin-Peter",LastName = "Kim",
+                MemberID = "DEFAULT_ADMIN_11",Email = "peter@myshopify.com.au",FirstName = "Admin-Peter",LastName = "Kim",
                 Password = EncryptionHelper.SHA512("Brainz123!@#"), Phone = "", Role = "Administrator",
-                CustomerID = "DEFAULT_ADMIN_01",  BrainzPoint = 0, ImagePathFile = "",  ModifiedDate = DateTime.UtcNow,    RegisteredDate = DateTime.UtcNow
+                CustomerID = "DEFAULT_ADMIN_11",  BrainzPoint = 0, ImagePathFile = "",  ModifiedDate = DateTime.UtcNow,    RegisteredDate = DateTime.UtcNow
             },
             new Member
             {
-                MemberID = "DEFAULT_ADMIN_02",Email = "matt@Peter.com.au",FirstName = "Matt",LastName = "Ryan",
+                MemberID = "DEFAULT_ADMIN_12",Email = "michael@myshopify.com.au",FirstName = "Michael",LastName = "Smith",
                 Password = EncryptionHelper.SHA512("Brainz123!@#"), Phone = "", Role = "Administrator",
-                CustomerID = "DEFAULT_MEMBER_02",  BrainzPoint = 0, ImagePathFile = "", ModifiedDate = DateTime.UtcNow,    RegisteredDate = DateTime.UtcNow
+                CustomerID = "DEFAULT_ADMIN_12",  BrainzPoint = 0, ImagePathFile = "", ModifiedDate = DateTime.UtcNow,    RegisteredDate = DateTime.UtcNow
             },
             new Member
             {
-                MemberID = "DEFAULT_MEMBER_01",Email = "PaytecDev009@outlook.com",FirstName = "User-Peter",LastName = "Kim",
+                MemberID = "DEFAULT_MEMBER_11",Email = "john@myshopify.com.au",FirstName = "John",LastName = "Williams",
                 Password = EncryptionHelper.SHA512("Brainz123!@#"), Phone = "", Role = "User",
-                CustomerID = "DEFAULT_MEMBER_01",  BrainzPoint = 0, ImagePathFile = "", ModifiedDate = DateTime.UtcNow,    RegisteredDate = DateTime.UtcNow
+                CustomerID = "DEFAULT_MEMBER_11",  BrainzPoint = 0, ImagePathFile = "", ModifiedDate = DateTime.UtcNow,    RegisteredDate = DateTime.UtcNow
             },
 
 

@@ -57,9 +57,8 @@ public partial class LoginPage
     {
 #if DEBUG
 
-        //LoginFormModel.Email = "PaytecDev009@outlook.com"; // DEFAULT_MEMBER_01
-        //LoginFormModel.Email = "mryan@Peter.com.au"; // DEFAULT_MEMBER_02
-        LoginFormModel.Email = "peter@Peter.com.au"; //ADMIN
+        //LoginFormModel.Email = "John@myshopify.com"; // DEFAULT_MEMBER_01
+        LoginFormModel.Email = "peter@myshopify.com.au"; //ADMIN
         LoginFormModel.Password = "Brainz123!@#";
 #endif
     }
@@ -99,7 +98,7 @@ public partial class LoginPage
         }
         else
         {
-            if (BrainzParentsPortalSettings.MultifactorAuthentication.IsUseMFA)
+            if (ShopifyPortalSettings.MultifactorAuthentication.IsUseMFA)
             {
                 if (!await MultiFactorAuthenticationProcess(portalDbMemberService))
                 {

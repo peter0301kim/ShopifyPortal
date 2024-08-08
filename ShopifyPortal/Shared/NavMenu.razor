@@ -3,11 +3,11 @@
     <AuthorizeView Roles="Administrator,User">
         <Authorized>
             <div class="nav-item px-3">
-                <MudNavLink Href="MyBrainz" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Dashboard">My Brainz</MudNavLink>
+                <MudNavLink Href="MyBrainz" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Dashboard">My Page</MudNavLink>
                 <MudNavLink Href="SpendPoints" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.AttachMoney">Spend Points</MudNavLink>
                 <MudNavGroup Icon="@Icons.Material.Filled.CurrencyExchange" Title="Transactions" Expanded="false">
                     <MudNavLink Href="OrderTxs" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Order Transactions</MudNavLink>
-                    <MudNavLink Href="BrainzPointTrs" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">BrainzPoint Transfers</MudNavLink>
+                    <MudNavLink Href="BrainzPointTrs" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Shopify Point Transfers</MudNavLink>
                 </MudNavGroup>
 
             </div>
@@ -17,8 +17,8 @@
         <Authorized>
             <div class="nav-item px-3">
 
-                <MudNavGroup Icon="@Icons.Material.Filled.People"  Title="Brainz Members" Expanded="false">
-                    <MudNavLink Href="ReadMembers" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Brainz member list</MudNavLink>
+                <MudNavGroup Icon="@Icons.Material.Filled.People"  Title="Shopify Members" Expanded="false">
+                    <MudNavLink Href="ReadMembers" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Shopify member list</MudNavLink>
                     <MudNavLink Href="AddMember" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Add">Add a member</MudNavLink>
                 </MudNavGroup>
 

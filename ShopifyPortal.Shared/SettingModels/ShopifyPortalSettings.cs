@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace ShopifyPortal.Shared.SettingModels;
 
-public class BrainzParentsPortalSettings
+public class ShopifyPortalSettings
 {
     public TransferFundsSettings TransferFunds { get; set; }
     public MultifactorAuthenticationSettings MultifactorAuthentication { get; set; }
     public ResetPasswordSettings ResetPassword { get; set; }
     public NewzealandPostcodeSettings NewzealandPostcode { get; set; }
-    public BrainzParentsPortalSettings(string settingsPathFile)
+    public ShopifyPortalSettings(string settingsPathFile)
     {
         if (File.Exists(settingsPathFile))
         {
-            var settings = JsonConvert.DeserializeObject<BrainzParentsPortalSettings>(File.ReadAllText(settingsPathFile));
+            var settings = JsonConvert.DeserializeObject<ShopifyPortalSettings>(File.ReadAllText(settingsPathFile));
 
             TransferFunds = settings.TransferFunds;
             MultifactorAuthentication = settings.MultifactorAuthentication;

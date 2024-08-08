@@ -43,8 +43,8 @@ builder.Services.AddSingleton<EmailServerSettings>(
     new EmailServerSettings(GlobalSettings.Instance.EmailServerSettingsPathFile)
     );
 
-builder.Services.AddSingleton<BrainzParentsPortalSettings>(
-    new BrainzParentsPortalSettings(GlobalSettings.Instance.BrainzParentsPortalSettingsPathFile)
+builder.Services.AddSingleton<ShopifyPortalSettings>(
+    new ShopifyPortalSettings(GlobalSettings.Instance.BrainzParentsPortalSettingsPathFile)
     );
 
 builder.Services.AddSingleton<WeatherForecastService>();
