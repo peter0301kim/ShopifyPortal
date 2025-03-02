@@ -14,11 +14,15 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="NLog" Version="5.3.4" />
+    <PackageReference Include="NLog" Version="5.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Configs\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShopifyPortal.Shared\ShopifyPortal.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

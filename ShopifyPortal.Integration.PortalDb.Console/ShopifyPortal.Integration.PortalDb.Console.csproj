@@ -13,10 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NLog" Version="5.3.4" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ShopifyPortal.Shared\ShopifyPortal.Shared.csproj" />
   </ItemGroup>
 
