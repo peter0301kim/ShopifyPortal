@@ -12,4 +12,10 @@
     <ProjectReference Include="..\Peter.Integration\Peter.Integration.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Peters.Library">
+      <HintPath>..\..\Peters.Identity\Lib.Core\Peters.Library.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

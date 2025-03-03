@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Peter.Integration.Encryption;
+using Peters.Library.Encryption;
 using System;
 using System.Collections.Generic;
 using System.Linq;

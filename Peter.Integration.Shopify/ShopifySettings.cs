@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Peters.Library.Encryption;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,8 +10,8 @@ namespace Peter.Integration.Shopify
     public class ShopifySettings
     {
         public string ApiAccessToken { get; set; }
-        public string ApiKey { get; set; }
-        public string ApiSecretKey { get; set; }
+        public string ApiKeyEncrypted { get; set; }
+        public string ApiSecretKeyEncrypted { get; set; }
         public string ApiBaseUrl { get; set; }
         public string ApiPath { get; set; }
         public string ApiVersion { get; set; }
@@ -21,6 +22,32 @@ namespace Peter.Integration.Shopify
         public string DefaultProductName { get; set; }
         public string DefaultCustomerId { get; set; }
         public string DefaultLocationId { get; set; }
+
+        [JsonIgnore]
+        public string ApiKey
+        {
+            get
+            {
+                return string.IsNullOrEmpty(ApiKeyEncrypted) ? "" : SymmetricEncryption.DecryptString(ApiKeyEncrypted);
+            }
+            set
+            {
+                ApiKeyEncrypted = string.IsNullOrEmpty(value) ? "" : SymmetricEncryption.EncryptString(value);
+            }
+        }
+
+        [JsonIgnore]
+        public string ApiSecretKey {
+            get
+            {
+                return string.IsNullOrEmpty(ApiSecretKeyEncrypted) ? "" : SymmetricEncryption.DecryptString(ApiSecretKeyEncrypted);
+            }
+            set
+            {
+                ApiSecretKeyEncrypted = string.IsNullOrEmpty(value) ? "" : SymmetricEncryption.EncryptString(value);
+            }
+        }
+
 
         public ShopifySettings()
         {

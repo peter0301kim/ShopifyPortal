@@ -9,4 +9,10 @@
     <PackageReference Include="NLog" Version="5.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Peters.Library">
+      <HintPath>..\..\Peters.Identity\Lib.Core\Peters.Library.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
