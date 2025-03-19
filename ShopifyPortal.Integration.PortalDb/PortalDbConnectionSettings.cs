@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Peters.Library.Encryption;
+using Peter.Integration.Basic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,11 +44,11 @@ namespace ShopifyPortal.Integration.PortalDb
         {
             get
             {
-                return string.IsNullOrEmpty(DbEncryptedPassword) ? "" : SymmetricEncryption.DecryptString(DbEncryptedPassword);
+                return string.IsNullOrEmpty(DbEncryptedPassword) ? "" : PetersEncryption.DecryptString(DbEncryptedPassword);
             }
             set
             {
-                DbEncryptedPassword = string.IsNullOrEmpty(value) ? "" : SymmetricEncryption.EncryptString(value);
+                DbEncryptedPassword = string.IsNullOrEmpty(value) ? "" : PetersEncryption.EncryptString(value);
             }
         }
 

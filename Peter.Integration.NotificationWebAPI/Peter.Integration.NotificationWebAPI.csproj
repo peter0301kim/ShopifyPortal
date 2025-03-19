@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Peter.Integration\Peter.Integration.csproj" />
+    <ProjectReference Include="..\Peter.Integration.Basic\Peter.Integration.Basic.csproj" />
   </ItemGroup>
 
 </Project>

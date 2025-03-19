@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Peter.Integration", "Peter.Integration\Peter.Integration.csproj", "{A7F3EBE9-3E0B-4B02-9D14-1BFECD5D09B5}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Peter.Integration.Shopify", "Peter.Integration.Shopify\Peter.Integration.Shopify.csproj", "{4B0B9E42-1810-4249-869E-9D466CDE701F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Peter.Integration.Shopify.Console", "Peter.Integration.Shopify.Console\Peter.Integration.Shopify.Console.csproj", "{11D27AB8-8341-4B33-91F2-35A97216205A}"
@@ -27,16 +25,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopifyPortal.WebAPI", "Sho
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Peter.Integration.NotificationWebAPI", "Peter.Integration.NotificationWebAPI\Peter.Integration.NotificationWebAPI.csproj", "{23FC7B07-E23E-4609-817A-3FB1410016BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peter.Integration.Basic", "Peter.Integration.Basic\Peter.Integration.Basic.csproj", "{5CF0AD90-9F00-D68A-AE4C-CCA8CC24A323}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A7F3EBE9-3E0B-4B02-9D14-1BFECD5D09B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A7F3EBE9-3E0B-4B02-9D14-1BFECD5D09B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A7F3EBE9-3E0B-4B02-9D14-1BFECD5D09B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A7F3EBE9-3E0B-4B02-9D14-1BFECD5D09B5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4B0B9E42-1810-4249-869E-9D466CDE701F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4B0B9E42-1810-4249-869E-9D466CDE701F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B0B9E42-1810-4249-869E-9D466CDE701F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -81,6 +77,10 @@ Global
 		{23FC7B07-E23E-4609-817A-3FB1410016BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23FC7B07-E23E-4609-817A-3FB1410016BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23FC7B07-E23E-4609-817A-3FB1410016BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CF0AD90-9F00-D68A-AE4C-CCA8CC24A323}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CF0AD90-9F00-D68A-AE4C-CCA8CC24A323}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CF0AD90-9F00-D68A-AE4C-CCA8CC24A323}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CF0AD90-9F00-D68A-AE4C-CCA8CC24A323}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

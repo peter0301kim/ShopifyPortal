@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Peters.Library.Encryption;
+using Peter.Integration.Basic;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,11 +28,11 @@ namespace Peter.Integration.Shopify
         {
             get
             {
-                return string.IsNullOrEmpty(ApiKeyEncrypted) ? "" : SymmetricEncryption.DecryptString(ApiKeyEncrypted);
+                return string.IsNullOrEmpty(ApiKeyEncrypted) ? "" : PetersEncryption.DecryptString(ApiKeyEncrypted);
             }
             set
             {
-                ApiKeyEncrypted = string.IsNullOrEmpty(value) ? "" : SymmetricEncryption.EncryptString(value);
+                ApiKeyEncrypted = string.IsNullOrEmpty(value) ? "" : PetersEncryption.EncryptString(value);
             }
         }
 
@@ -40,11 +40,11 @@ namespace Peter.Integration.Shopify
         public string ApiSecretKey {
             get
             {
-                return string.IsNullOrEmpty(ApiSecretKeyEncrypted) ? "" : SymmetricEncryption.DecryptString(ApiSecretKeyEncrypted);
+                return string.IsNullOrEmpty(ApiSecretKeyEncrypted) ? "" : PetersEncryption.DecryptString(ApiSecretKeyEncrypted);
             }
             set
             {
-                ApiSecretKeyEncrypted = string.IsNullOrEmpty(value) ? "" : SymmetricEncryption.EncryptString(value);
+                ApiSecretKeyEncrypted = string.IsNullOrEmpty(value) ? "" : PetersEncryption.EncryptString(value);
             }
         }
 
