@@ -1,7 +1,7 @@
 {
   "ApiAccessToken": "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",
-  "ApiKeyEncrypted": "1Ru4mU3qxEcGHnpWgbwTcMkmwHuKInwelMmzDGS/1RRkDhyAfyml6ANpPSvVrTwA",
-  "ApiSecretKeyEncrypted": "mGjyW46S5L5LbQ8g1RJ8O1JoDamusZQUYQUWKWFFYw8mWgocp1cvvL1wf30QgVHn",
+  "ApiKeyEncrypted": "",
+  "ApiSecretKeyEncrypted": "",
   "ApiBaseURL": "https://paytec-test.myshopify.com",
   "ApiPath": "/admin/api/",
   "ApiVersion": "2024-01",

@@ -56,8 +56,6 @@ public partial class LoginPage
     protected override async Task OnInitializedAsync()
     {
 #if DEBUG
-
-        //LoginFormModel.Email = "John@myshopify.com"; // DEFAULT_MEMBER_01
         LoginFormModel.Email = "peter@myshopify.com.au"; //ADMIN
         LoginFormModel.Password = "Brainz123!@#";
 #endif
@@ -110,7 +108,8 @@ public partial class LoginPage
                 new UserSession 
                 { 
                     UserName = $"{userAccount.FirstName} {userAccount.LastName}", 
-                    UserID = userAccount.MemberID, Role = userAccount.Role 
+                    UserID = userAccount.MemberID, 
+                    Role = userAccount.Role 
                 });
 
             //Save user action tracking

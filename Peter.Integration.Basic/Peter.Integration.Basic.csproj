@@ -13,4 +13,10 @@
     <Folder Include="lib\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="lib\Peters.Library.Internal.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

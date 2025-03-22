@@ -15,7 +15,7 @@ namespace ShopifyPortal.Pages.Login;
 public partial class ForgotPasswordDialog
 {
     private static Logger Log = LogManager.GetCurrentClassLogger();
-    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    [CascadingParameter] IMudDialogInstance MudDialog { get; set; }
 
     public class ForgotPasswordForm
     {

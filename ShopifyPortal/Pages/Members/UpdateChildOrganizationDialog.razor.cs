@@ -7,7 +7,7 @@ namespace ShopifyPortal.Pages.Members;
 
 public partial class UpdateChildOrganizationDialog
 {
-    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    [CascadingParameter] IMudDialogInstance MudDialog { get; set; }
     [Parameter] public string ParamChildOrganizationID { get; set; } = string.Empty;
     private string ChildName { get; set; }
     private List<Organization> Organizations { get; set; } = null;
