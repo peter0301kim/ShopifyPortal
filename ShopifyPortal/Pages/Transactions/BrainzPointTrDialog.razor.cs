@@ -8,7 +8,7 @@ namespace ShopifyPortal.Pages.Transactions;
 
 public partial class BrainzPointTrDialog
 {
-    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    [CascadingParameter] IMudDialogInstance MudDialog { get; set; }
     [Parameter] public string BrainzPointTrID { get; set; }
     public DtSpentBrainzPointTr DtSpentBrainzPointTr { get; set; }
     public Organization Organization { get; set; }

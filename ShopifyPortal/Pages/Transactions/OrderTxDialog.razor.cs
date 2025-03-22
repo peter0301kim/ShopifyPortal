@@ -11,7 +11,7 @@ namespace ShopifyPortal.Pages.Transactions;
 
 public partial class OrderTxDialog
 {
-    [CascadingParameter]    MudDialogInstance MudDialog { get; set; }
+    [CascadingParameter]    IMudDialogInstance MudDialog { get; set; }
     [Parameter] public string OrderTxID { get; set; }
     public DtOrderTx DtOrderTx { get; set; }
     bool IsProgress { get; set; } = false;

@@ -14,7 +14,7 @@ namespace ShopifyPortal.Pages.Login;
 public partial class Login2FADialog
 {
     private static Logger Log = LogManager.GetCurrentClassLogger();
-    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    [CascadingParameter] IMudDialogInstance MudDialog { get; set; }
     [Parameter] public string MemberEmail { get; set; }
     private string SecretKey { get; set; }
 

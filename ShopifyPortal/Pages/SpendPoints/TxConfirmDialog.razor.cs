@@ -25,7 +25,7 @@ namespace ShopifyPortal.Pages.SpendPoints
         }
 
         [CascadingParameter]
-        MudDialogInstance MudDialog { get; set; }
+        IMudDialogInstance MudDialog { get; set; }
 
         [Parameter]
         public TxConfirmForm TxConfirmData { get; set; }

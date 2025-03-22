@@ -7,7 +7,7 @@ namespace ShopifyPortal.Pages.Members;
 
 public partial class SelectSchoolDialog
 {
-    [CascadingParameter]   MudDialogInstance MudDialog { get; set; }
+    [CascadingParameter]   IMudDialogInstance MudDialog { get; set; }
 
     [Parameter]    public string SelectedOrganizations { get; set; } = "";
 
